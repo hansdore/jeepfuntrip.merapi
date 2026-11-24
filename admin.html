@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin V8 | Jeep FunTrip Merapi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <script src="app-config.js"></script>
+    <script src="featured-articles.js"></script>
+    <script src="local-data.js"></script>
+    <script src="admin.js" defer></script>
+</head>
+<body class="admin-page">
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img class="brand-mark" src="jeep-funtrip-logo.png" alt="">
+                <span class="brand-j" aria-hidden="true">J</span>
+                <span>JEEP FUNTRIP</span> MERAPI
+            </a>
+            <a class="btn-primary-nav" href="index.html"><i class="fa-solid fa-arrow-left"></i> Lihat Website</a>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <section id="adminLoginPanel" class="admin-login-card">
+            <span class="section-badge"><i class="fa-solid fa-lock"></i> Admin Dashboard <span class="admin-version">V8</span></span>
+            <h1>Masuk Admin</h1>
+            <p>Mode lokal: buat password admin pada browser ini untuk pertama kali masuk.</p>
+            <form id="adminLoginForm">
+                <label for="adminEmail">Email admin</label>
+                <input id="adminEmail" type="email" autocomplete="username" required>
+                <label for="adminPassword">Password admin</label>
+                <input id="adminPassword" type="password" autocomplete="current-password" required>
+                <button class="btn btn-primary btn-block" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Masuk</button>
+                <p id="loginError" class="admin-message admin-error" role="alert" hidden></p>
+            </form>
+        </section>
+
+        <section id="adminDashboard" class="container admin-dashboard" hidden>
+            <div class="admin-heading">
+                <div>
+                    <span class="section-badge"><i class="fa-solid fa-shield-halved"></i> Panel pengelola <span class="admin-version">V8</span></span>
+                    <h1>Dashboard Admin</h1>
+                    <p id="signedInAs"></p>
+                </div>
+                <button id="signOutButton" type="button" class="btn btn-secondary"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</button>
+            </div>
+
+            <p class="admin-message">Data booking dan konten tersimpan lokal di browser ini dan tidak disinkronkan ke perangkat lain.</p>
+            <p id="adminNotice" class="admin-message" role="status" hidden></p>
+
+            <nav class="admin-tabs" aria-label="Menu admin">
+                <span class="admin-nav-label">MENU PENGELOLA</span>
+                <button type="button" class="admin-tab active" data-admin-view="overview"><i class="fa-solid fa-chart-pie"></i> Overview</button>
+                <button type="button" class="admin-tab" data-admin-view="bookings"><i class="fa-solid fa-calendar-check"></i> Booking</button>
+                <button type="button" class="admin-tab" data-admin-view="packages"><i class="fa-solid fa-route"></i> Paket & Rute</button>
+                <button type="button" class="admin-tab" data-admin-view="articles"><i class="fa-solid fa-newspaper"></i> Artikel</button>
+                <button type="button" class="admin-tab" data-admin-view="gallery"><i class="fa-solid fa-images"></i> Galeri</button>
+                <button type="button" class="admin-tab" data-admin-view="contact"><i class="fa-solid fa-address-card"></i> Kontak</button>
+                <button type="button" class="admin-tab" data-admin-view="account"><i class="fa-solid fa-user-shield"></i> Akun</button>
+            </nav>
+
+            <section id="adminOverviewView" class="admin-view">
+                <div class="admin-view-heading">
+                    <div><h2>Overview website</h2><p>Ringkasan konten, booking, dan kunjungan halaman.</p></div>
+                    <button id="refreshOverviewButton" class="btn btn-secondary" type="button"><i class="fa-solid fa-rotate"></i> Perbarui overview</button>
+                </div>
+                <div class="admin-overview-grid">
+                    <article class="overview-card overview-visitors">
+                        <span class="overview-icon"><i class="fa-solid fa-eye"></i></span>
+                        <p>Kunjungan 30 hari</p>
+                        <strong id="visitorViews30">—</strong>
+                        <small>Total halaman dibuka, bukan jumlah orang unik</small>
+                    </article>
+                    <article class="overview-card overview-today">
+                        <span class="overview-icon"><i class="fa-solid fa-calendar-day"></i></span>
+                        <p>Kunjungan hari ini</p>
+                        <strong id="visitorViewsToday">—</strong>
+                        <small id="visitorViews7">— kunjungan dalam 7 hari</small>
+                    </article>
+                    <article class="overview-card overview-bookings">
+                        <span class="overview-icon"><i class="fa-solid fa-calendar-check"></i></span>
+                        <p>Booking tersimpan</p>
+                        <strong id="overviewBookingCount">0</strong>
+                        <small id="bookingStorageLabel">Tersimpan di browser ini</small>
+                    </article>
+                    <article class="overview-card overview-content">
+                        <span class="overview-icon"><i class="fa-solid fa-layer-group"></i></span>
+                        <p>Konten aktif</p>
+                        <strong id="overviewContentCount">0</strong>
+                        <small>Paket, artikel, dan foto yang ditampilkan</small>
+                    </article>
+                </div>
+                <div class="visitor-report">
+                    <div>
+                        <h3>Ringkasan kunjungan per halaman</h3>
+                        <p>Data agregat 30 hari terakhir. Tidak menyimpan identitas pengunjung.</p>
+                    </div>
+                    <div id="visitorReport" class="visitor-report-list" aria-live="polite">
+                        <p class="admin-empty">Memuat ringkasan kunjungan…</p>
+                    </div>
+                    <p id="visitorNotice" class="admin-message" role="status">Statistik kunjungan dihitung secara agregat.</p>
+                </div>
+            </section>
+
+            <section id="adminBookingsView" class="admin-view" hidden>
+                <div class="admin-view-heading">
+                    <div><h2>Data Booking</h2><p>Pesanan yang dikirim dari formulir website.</p></div>
+                    <button class="btn btn-primary admin-refresh" data-refresh="bookings" type="button"><i class="fa-solid fa-rotate"></i> Muat ulang</button>
+                </div>
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead><tr><th>Tanggal masuk</th><th>Pemesan</th><th>Paket & rute</th><th>Tanggal trip</th><th>Jeep / peserta</th><th>Total</th><th>Status</th></tr></thead>
+                        <tbody id="bookingsTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="adminRecordsView" class="admin-view" hidden>
+                <div class="admin-view-heading">
+                    <div><h2 id="recordsTitle"></h2><p id="recordsDescription"></p></div>
+                    <div class="admin-actions">
+                        <button id="newRecordButton" class="btn btn-primary" type="button"><i class="fa-solid fa-plus"></i> Tambah data</button>
+                        <button id="refreshRecordsButton" class="btn btn-secondary" type="button"><i class="fa-solid fa-rotate"></i> Muat ulang</button>
+                    </div>
+                </div>
+                <div id="recordsList" class="admin-records"></div>
+                <form id="recordEditor" class="record-editor" hidden>
+                    <h3 id="recordEditorTitle">Data baru</h3>
+                    <p id="recordEditorDescription">Isi formulir di bawah. Pratinjau akan mengikuti foto dan keterangan yang Anda masukkan.</p>
+                    <div class="record-editor-layout">
+                        <div id="recordFields" class="record-fields"></div>
+                        <aside id="recordPreview" class="record-preview" aria-label="Pratinjau konten"></aside>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+                        <button id="cancelRecordButton" class="btn btn-secondary" type="button">Batal</button>
+                    </div>
+                    <p id="recordError" class="admin-message admin-error" role="alert" hidden></p>
+                </form>
+            </section>
+
+            <section id="adminContactView" class="admin-view" hidden>
+                <div class="admin-view-heading">
+                    <div><h2>Kontak & basecamp</h2><p>Informasi ini ditampilkan di bagian Pemesanan Cepat pada website.</p></div>
+                </div>
+                <form id="contactSettingsForm" class="contact-settings-form">
+                    <div class="contact-settings-fields">
+                        <div class="record-field">
+                            <label for="contactWhatsappNumber">Nomor WhatsApp</label>
+                            <input id="contactWhatsappNumber" name="whatsappNumber" type="tel" autocomplete="tel" placeholder="0877 1631 5613" required>
+                            <small>Gunakan nomor aktif, misalnya 0877 1631 5613 atau +6287716315613.</small>
+                        </div>
+                        <div class="record-field">
+                            <label for="contactInstagramUrl">Tautan profil Instagram</label>
+                            <input id="contactInstagramUrl" name="instagramUrl" type="url" autocomplete="url" placeholder="https://www.instagram.com/akun/" required>
+                            <small>Tempel tautan lengkap profil Instagram.</small>
+                        </div>
+                        <div class="record-field">
+                            <label for="contactBasecampAddress">Alamat basecamp</label>
+                            <input id="contactBasecampAddress" name="basecampAddress" type="text" maxlength="300" autocomplete="street-address" placeholder="Nama jalan, desa, kecamatan, kabupaten" required>
+                            <small>Alamat ini juga dipakai sebagai tujuan pencarian di Google Maps.</small>
+                        </div>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Simpan informasi kontak</button>
+                    </div>
+                    <p id="contactSettingsMessage" class="admin-message" role="status" hidden></p>
+                </form>
+            </section>
+
+            <section id="adminAccountView" class="admin-view" hidden>
+                <div class="admin-view-heading">
+                    <div><h2>Pengaturan akun login</h2><p>Ubah email login atau buat password baru untuk admin.</p></div>
+                </div>
+                <form id="accountSettingsForm" class="contact-settings-form">
+                    <div class="contact-settings-fields">
+                        <div class="record-field">
+                            <label for="accountEmail">Email login</label>
+                            <input id="accountEmail" name="email" type="email" autocomplete="username" required>
+                        </div>
+                        <div class="record-field">
+                            <label for="accountCurrentPassword">Password saat ini</label>
+                            <input id="accountCurrentPassword" name="currentPassword" type="password" autocomplete="current-password" required>
+                            <small>Konfirmasi dengan password saat ini untuk menyimpan perubahan.</small>
+                        </div>
+                        <div class="record-field">
+                            <label for="accountNewPassword">Password baru (opsional)</label>
+                            <input id="accountNewPassword" name="newPassword" type="password" autocomplete="new-password" minlength="8">
+                            <small>Kosongkan jika hanya ingin mengubah email. Password baru minimal 8 karakter.</small>
+                        </div>
+                        <div class="record-field">
+                            <label for="accountConfirmPassword">Konfirmasi password baru</label>
+                            <input id="accountConfirmPassword" name="confirmPassword" type="password" autocomplete="new-password">
+                        </div>
+                    </div>
+                    <div class="admin-actions">
+                        <button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Simpan perubahan akun</button>
+                    </div>
+                    <p id="accountSettingsMessage" class="admin-message" role="status" hidden></p>
+                </form>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

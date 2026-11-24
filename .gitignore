@@ -1,0 +1,6 @@
+# Local/deployment archives
+*.zip
+
+# OS/editor files
+.DS_Store
+Thumbs.db

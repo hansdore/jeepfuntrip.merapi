@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detail urutan pemberhentian dan peta rute wisata Jeep Merapi." data-i18n-content="routeMetaDescription">
+    <title>Detail Rute — Jeep FunTrip Merapi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="route-page">
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img class="brand-mark" src="jeep-funtrip-logo.png" alt="">
+                <span class="brand-j" aria-hidden="true">J</span>
+                <span>JEEP FUNTRIP</span> MERAPI
+            </a>
+            <div class="route-nav-actions">
+                <div class="language-switch" role="group" aria-label="Choose language">
+                    <button type="button" data-language="id" aria-pressed="true">ID</button>
+                    <button type="button" data-language="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="btn-primary-nav" href="index.html#paket" data-i18n="navPackages">Paket Wisata</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container route-detail-container">
+            <a href="index.html#paket" class="route-back-link"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="routeBack">Kembali ke pilihan paket</span></a>
+            <div id="routeNotFound" class="route-error" role="alert" hidden>
+                <span data-i18n="routeNotFound">Rute tidak ditemukan. Silakan pilih paket dan opsi rute dari halaman utama.</span>
+            </div>
+            <div id="routeDetail" hidden>
+                <header class="route-detail-header">
+                    <span class="section-badge" id="routePackageName"></span>
+                    <h1 id="routeTitle"></h1>
+                    <p id="routeDescription"></p>
+                </header>
+
+                <section class="route-map-panel" aria-labelledby="routeMapHeading">
+                    <div class="route-map-heading">
+                        <div>
+                            <span class="section-badge" data-i18n="mapBadge">Peta Google Maps</span>
+                            <h2 id="routeMapHeading" data-i18n="mapTitle">Peta perjalanan</h2>
+                        </div>
+                        <a id="openGoogleRoute" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-solid fa-diamond-turn-right"></i> <span data-i18n="openDirections">Buka petunjuk arah</span>
+                        </a>
+                    </div>
+                    <iframe id="routeMap" title="Peta rute wisata Jeep Merapi" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                    <p class="route-map-note" data-i18n="mapNote">Peta menunjukkan titik tujuan dari Google Maps. Jalur off-road, kondisi akses, dan urutan aktual dapat berubah mengikuti arahan pengelola serta kondisi kawasan.</p>
+                </section>
+
+                <section class="route-stops-section" aria-labelledby="stopsHeading">
+                    <h2 id="stopsHeading" data-i18n="stopSequence">Urutan pemberhentian</h2>
+                    <ol id="routeStops" class="route-stop-list"></ol>
+                </section>
+
+                <div class="route-booking-action">
+                    <a id="bookThisRoute" class="btn btn-whatsapp" href="index.html#pemesanan">
+                        <i class="fa-solid fa-calendar-check"></i> <span data-i18n="bookThisRoute">Pilih rute ini dan booking</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Jeep FunTrip Merapi. Jelajah dengan rasa hormat.</p>
+            <p class="footer-sub" data-i18n="routeFooter">Peta oleh Google Maps. Foto lokasi berlisensi ditautkan ke sumber aslinya.</p>
+            <p class="footer-sub">Data booking dan konten hanya tersimpan di browser ini.</p>
+        </div>
+    </footer>
+
+    <script src="app-config.js"></script>
+    <script src="featured-articles.js"></script>
+    <script src="local-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jelajahi lereng Merapi dengan Jeep, temukan rute favorit, dan pesan perjalanan langsung." data-i18n-content="metaDescription">
+    <title>Jeep FunTrip Merapi — Jelajah Lereng</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img class="brand-mark" src="jeep-funtrip-logo.png" alt="">
+                <span class="brand-j" aria-hidden="true">J</span>
+                <span>JEEP FUNTRIP</span> MERAPI
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#beranda" class="nav-item" data-i18n="navHome">Beranda</a>
+                <a href="#paket" class="nav-item" data-i18n="navPackages">Paket Wisata</a>
+                <a href="#galeri" class="nav-item" data-i18n="navGallery">Galeri Trip</a>
+                <a href="#artikel" class="nav-item" data-i18n="navArticles">Artikel</a>
+                <a href="#rute-jalan" class="nav-item" data-i18n="navRoutes">Destinasi</a>
+                <a href="#pemesanan" class="btn-primary-nav"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="navBooking">Booking</span></a>
+                <div class="language-switch" role="group" aria-label="Pilih bahasa">
+                    <button type="button" data-language="id" aria-pressed="true">ID</button>
+                    <button type="button" data-language="en" aria-pressed="false">EN</button>
+                </div>
+            </nav>
+            <button class="mobile-toggle" id="menuToggle" type="button" aria-label="Toggle Navigation" aria-controls="navLinks" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="badge-tag"><i class="fa-solid fa-location-dot"></i> <span data-i18n="heroBadge">Petualangan lokal, cerita yang nyata</span></span>
+            <h1 class="hero-title">LEPAS JALAN.<br><span>DEKAT MERAPI.</span></h1>
+            <p class="hero-desc" data-i18n="heroDescription">Naik Jeep menyusuri lanskap vulkanik, desa-desa lereng, dan kisah Merapi bersama pengemudi lokal.</p>
+            <div class="hero-cta">
+                <a href="#paket" class="btn btn-primary"><i class="fa-solid fa-arrow-down"></i> <span data-i18n="heroPackages">Temukan perjalananmu</span></a>
+                <a href="#rute-jalan" class="btn btn-secondary"><i class="fa-solid fa-route"></i> <span data-i18n="heroExplore">Kenali kawasan</span></a>
+            </div>
+            <div class="hero-facts" aria-label="Informasi perjalanan">
+                <span><strong>4</strong> <span data-i18n="heroFactGuests">orang per Jeep</span></span>
+                <span><strong>5</strong> <span data-i18n="heroFactSpots">titik pilihan</span></span>
+                <span><strong>01</strong> <span data-i18n="heroFactLocal">basecamp lokal</span></span>
+            </div>
+            <a class="image-source hero-image-source" href="https://commons.wikimedia.org/wiki/File:Lava_Tour_Jogja.jpg" target="_blank" rel="noopener noreferrer">Foto: Wrsrachma / Wikimedia Commons (CC BY-SA 4.0)</a>
+        </div>
+    </section>
+
+    <!-- Paket Wisata Section (Sesuai Brosur) -->
+    <section id="paket" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-i18n="packagesBadge">Daftar Harga & Rute</span>
+                <h2 data-i18n="packagesTitle">Pilihan Paket Wisata Jeep Merapi</h2>
+                <p data-i18n="packagesDescription">Harga per-Jeep (Kapasitas maksimal 4 orang). Pilih variasi rute pilihan Anda!</p>
+            </div>
+
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="pkg-header">
+                        <h3>Short Trip</h3>
+                        <div class="pkg-duration"><i class="fa-regular fa-clock"></i> <span data-i18n="durationShort">1 s/d 1,5 Jam</span></div>
+                        <div class="pkg-price">450K <span data-i18n="perJeep">/ Jeep</span></div>
+                    </div>
+                    <div class="pkg-routes" data-package-id="short-trip"></div>
+                    <button onclick="selectPackage('Short Trip (450K)')" class="btn btn-card"><span data-i18n="chooseShort">Pilih Short Trip</span></button>
+                </div>
+
+                <div class="package-card">
+                    <div class="pkg-header">
+                        <h3>Short Plus Trip</h3>
+                        <div class="pkg-duration"><i class="fa-regular fa-clock"></i> <span data-i18n="durationShortPlus">1,5 s/d 2 Jam</span></div>
+                        <div class="pkg-price">500K <span data-i18n="perJeep">/ Jeep</span></div>
+                    </div>
+                    <div class="pkg-routes" data-package-id="short-plus-trip"></div>
+                    <button onclick="selectPackage('Short Plus Trip (500K)')" class="btn btn-card"><span data-i18n="chooseShortPlus">Pilih Short Plus</span></button>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="pkg-badge" data-i18n="bestSeller">Best Seller</div>
+                    <div class="pkg-header">
+                        <h3>Medium Trip</h3>
+                        <div class="pkg-duration"><i class="fa-regular fa-clock"></i> <span data-i18n="durationMedium">2 s/d 2,5 Jam</span></div>
+                        <div class="pkg-price">550K <span data-i18n="perJeep">/ Jeep</span></div>
+                    </div>
+                    <div class="pkg-routes" data-package-id="medium-trip"></div>
+                    <button onclick="selectPackage('Medium Trip (550K)')" class="btn btn-primary btn-card"><span data-i18n="chooseMedium">Pilih Medium Trip</span></button>
+                </div>
+
+                <div class="package-card">
+                    <div class="pkg-header">
+                        <h3>Long Trip</h3>
+                        <div class="pkg-duration"><i class="fa-regular fa-clock"></i> <span data-i18n="durationLong">3 s/d 3,5 Jam</span></div>
+                        <div class="pkg-price">650K <span data-i18n="perJeep">/ Jeep</span></div>
+                    </div>
+                    <div class="pkg-routes" data-package-id="long-trip"></div>
+                    <button onclick="selectPackage('Long Trip (650K)')" class="btn btn-card"><span data-i18n="chooseLong">Pilih Long Trip</span></button>
+                </div>
+
+                <div class="package-card">
+                    <div class="pkg-badge" data-i18n="sunriseSpecial">Spesial Pagi</div>
+                    <div class="pkg-header">
+                        <h3>Sunrise Trip</h3>
+                        <div class="pkg-duration"><i class="fa-regular fa-clock"></i> <span data-i18n="durationSunrise">Start 04.30 - 07.30</span></div>
+                        <div class="pkg-price">600K <span data-i18n="perJeep">/ Jeep</span></div>
+                    </div>
+                    <div class="pkg-routes" data-package-id="sunrise-trip"></div>
+                    <button onclick="selectPackage('Sunrise Trip (600K)')" class="btn btn-card"><span data-i18n="chooseSunrise">Pilih Sunrise Trip</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Rute Lintasan Jalan (Road Path Section) -->
+    <section id="rute-jalan" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-i18n="visualBadge">Visual Perjalanan</span>
+                <h2 data-i18n="visualTitle">Foto Rute yang Dilalui</h2>
+                <p data-i18n="visualDescription">Lihat foto lokasi dan suasana perjalanan di beberapa titik wisata Jeep Merapi. Buka Google Maps untuk melihat lokasi.</p>
+            </div>
+
+            <div class="road-container">
+                <div class="road-line"></div>
+
+                <!-- Spot 1 -->
+                <div class="road-spot spot-left">
+                    <div class="spot-img-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Museum_Mini_Sisa_Hartaku_%282%29.jpg" alt="Museum Mini Sisa Hartaku">
+                        <span class="spot-number">1</span>
+                    </div>
+                    <div class="spot-info">
+                        <h3>Mini Museum Sisa Hartaku</h3>
+                        <p data-i18n="spotMuseum">Saksi bisu dahsyatnya erupsi Merapi 2010. Berisi peninggalan benda rumah tangga, kendaraan, dan jam dinding yang meleleh.</p>
+                        <a href="https://maps.google.com/?q=Museum+Sisa+Hartaku+Merapi" target="_blank" rel="noopener noreferrer" class="spot-map-btn"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                        <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Museum_Mini_Sisa_Hartaku_(2).jpg" target="_blank" rel="noopener noreferrer">Foto: Aniisasan / Wikimedia Commons (CC BY-SA 4.0)</a>
+                    </div>
+                </div>
+
+                <!-- Spot 2 -->
+                <div class="road-spot spot-right">
+                    <div class="spot-info">
+                        <h3>Batu Alien (Batu Wajah)</h3>
+                        <p data-i18n="spotAlien">Batu vulkanik raksasa yang terlempar dari kawah Merapi. Bertekstur unik menyerupai raut wajah manusia.</p>
+                        <a href="https://maps.google.com/?q=Batu+Alien+Kaliadem" target="_blank" rel="noopener noreferrer" class="spot-map-btn"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                        <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Mount_Merapi_from_the_south_side_with_rocks_from_the_eruption.jpg" target="_blank" rel="noopener noreferrer">Foto batuan kawasan Merapi (bukan foto khusus Batu Alien): Rovitavare / Wikimedia Commons (CC BY-SA 4.0)</a>
+                    </div>
+                    <div class="spot-img-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Mount_Merapi_from_the_south_side_with_rocks_from_the_eruption.jpg" alt="Batuan vulkanik di kawasan Gunung Merapi, bukan foto khusus Batu Alien" loading="lazy">
+                        <span class="spot-number">2</span>
+                    </div>
+                </div>
+
+                <!-- Spot 3 -->
+                <div class="road-spot spot-left">
+                    <div class="spot-img-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Bunker_Kaliadem.jpg" alt="Bunker Kaliadem">
+                        <span class="spot-number">3</span>
+                    </div>
+                    <div class="spot-info">
+                        <h3>Bunker Kaliadem</h3>
+                        <p data-i18n="spotBunker">Bangunan bunker bersejarah dengan latar belakang gagahnya puncak dan kawah aktif Gunung Merapi.</p>
+                        <a href="https://maps.google.com/?q=Bunker+Kaliadem+Merapi" target="_blank" rel="noopener noreferrer" class="spot-map-btn"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                        <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Bunker_Kaliadem.jpg" target="_blank" rel="noopener noreferrer">Foto: Iyosswazzo / Wikimedia Commons (CC BY-SA 4.0)</a>
+                    </div>
+                </div>
+
+                <!-- Spot 4 -->
+                <div class="road-spot spot-right">
+                    <div class="spot-info">
+                        <h3>Petilasan / Museum Mbah Maridjan</h3>
+                        <p data-i18n="spotMaridjan">Lokasi bersejarah kediaman almarhum Mbah Maridjan, sosok juru kunci ikonik Gunung Merapi.</p>
+                        <a href="https://maps.google.com/?q=Petilasan+Mbah+Maridjan" target="_blank" rel="noopener noreferrer" class="spot-map-btn"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                        <a class="image-source" href="https://commons.wikimedia.org/wiki/File:The_House_of_Memory_(Merapi).jpg" target="_blank" rel="noopener noreferrer">Foto rumah lama Mbah Maridjan / The House of Memory: Aldifauzan / Wikimedia Commons (CC BY-SA 4.0)</a>
+                    </div>
+                    <div class="spot-img-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/The_House_of_Memory_%28Merapi%29.jpg" alt="The House of Memory di rumah lama Mbah Maridjan, Kinahrejo" loading="lazy">
+                        <span class="spot-number">4</span>
+                    </div>
+                </div>
+
+                <!-- Spot 5 -->
+                <div class="road-spot spot-left">
+                    <div class="spot-img-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Lava_Tour_Jogja.jpg" alt="Jeep dalam perjalanan Lava Tour Merapi, ilustrasi suasana off-road" loading="lazy">
+                        <span class="spot-number">5</span>
+                    </div>
+                    <div class="spot-info">
+                        <h3>Track Off-Road Air Kalikuning</h3>
+                        <p data-i18n="spotTrack">Sensasi paling seru & menantang! Menerjang arus sungai dan genangan air dengan Jeep hingga basah kuyup.</p>
+                        <a href="https://maps.google.com/?q=Sungai+Kali+Kuning+Merapi" target="_blank" rel="noopener noreferrer" class="spot-map-btn"><i class="fa-solid fa-location-dot"></i> Google Maps</a>
+                        <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Lava_Tour_Jogja.jpg" target="_blank" rel="noopener noreferrer">Foto perjalanan Lava Tour (bukan foto khusus Track Kalikuning): Wrsrachma / Wikimedia Commons (CC BY-SA 4.0)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Foto Polaroid Trip -->
+    <section id="galeri" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-i18n="galleryBadge">Dokumentasi Peserta</span>
+                <h2 data-i18n="galleryTitle">Momen Keseruan Wisatawan</h2>
+                <p data-i18n="galleryDescription">Foto perjalanan wisatawan dan foto referensi lokasi Merapi. Klik foto untuk memperbesar atau buka sumber untuk melihat detailnya.</p>
+            </div>
+
+            <div class="polaroid-gallery">
+                <div class="polaroid-card rot-left" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/a/a2/Lava_Tour_Jogja.jpg', 'Perjalanan Lava Tour Jogja')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Lava_Tour_Jogja.jpg" alt="Perjalanan Lava Tour Jogja">
+                    <p class="polaroid-caption" data-i18n="galleryLava">Perjalanan Lava Tour</p>
+                    <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Lava_Tour_Jogja.jpg" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Wrsrachma / CC BY-SA 4.0</a>
+                </div>
+
+                <div class="polaroid-card rot-right" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/4/44/Bunker_Kaliadem.jpg', 'Bunker Kaliadem')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Bunker_Kaliadem.jpg" alt="Bunker Kaliadem">
+                    <p class="polaroid-caption">Bunker Kaliadem</p>
+                    <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Bunker_Kaliadem.jpg" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Iyosswazzo / CC BY-SA 4.0</a>
+                </div>
+
+                <div class="polaroid-card rot-left-2" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/2/25/Museum_Mini_Sisa_Hartaku_%282%29.jpg', 'Museum Mini Sisa Hartaku')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Museum_Mini_Sisa_Hartaku_%282%29.jpg" alt="Museum Mini Sisa Hartaku">
+                    <p class="polaroid-caption">Museum Mini Sisa Hartaku</p>
+                    <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Museum_Mini_Sisa_Hartaku_(2).jpg" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Aniisasan / CC BY-SA 4.0</a>
+                </div>
+
+                <div class="polaroid-card rot-right-2" onclick="openModal('https://upload.wikimedia.org/wikipedia/commons/f/f6/Clock-moment_of_eruption-Mount_Merapi.jpg', 'Jam yang rusak akibat erupsi Merapi di Museum Mini Sisa Hartaku')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Clock-moment_of_eruption-Mount_Merapi.jpg" alt="Jam yang rusak akibat erupsi Merapi di Museum Mini Sisa Hartaku">
+                    <p class="polaroid-caption" data-i18n="galleryClock">Jam peninggalan erupsi Merapi</p>
+                    <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Clock-moment_of_eruption-Mount_Merapi.jpg" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Prokurator11 / Domain publik</a>
+                </div>
+
+                <div class="polaroid-card rot-left" onclick="openModal('https://lh3.googleusercontent.com/d/1J90iBAriuvEQ2gOzLwB1SIxVfEf7FVvW=w1200', 'Rombongan Jeep di Merapi')">
+                    <img src="https://lh3.googleusercontent.com/d/1J90iBAriuvEQ2gOzLwB1SIxVfEf7FVvW=w1200" alt="Rombongan wisatawan berfoto bersama di beberapa Jeep dengan latar Gunung Merapi" loading="lazy">
+                    <p class="polaroid-caption" data-i18n="galleryDriveGroup">Rombongan Jeep di Merapi</p>
+                    <a class="image-source" href="https://drive.google.com/file/d/1J90iBAriuvEQ2gOzLwB1SIxVfEf7FVvW/view?usp=sharing" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Foto peserta / Google Drive</a>
+                </div>
+
+                <div class="polaroid-card rot-right" onclick="openModal('https://lh3.googleusercontent.com/d/1Wkb04sGCMRJ4lYfT4vQzmhr4d3JnbuZ5=w1200', 'Wisatawan menikmati track sungai')">
+                    <img src="https://lh3.googleusercontent.com/d/1Wkb04sGCMRJ4lYfT4vQzmhr4d3JnbuZ5=w1200" alt="Wisatawan menikmati track sungai dengan dua Jeep" loading="lazy">
+                    <p class="polaroid-caption" data-i18n="galleryDriveRiver">Wisatawan menikmati track sungai</p>
+                    <a class="image-source" href="https://drive.google.com/file/d/1Wkb04sGCMRJ4lYfT4vQzmhr4d3JnbuZ5/view?usp=sharing" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Foto peserta / Google Drive</a>
+                </div>
+
+                <div class="polaroid-card rot-left-2" onclick="openModal('https://lh3.googleusercontent.com/d/1u2eDF_eb0PXTou_CIkeMODrC9R1ARCgw=w1200', 'Sunset bersama Jeep kuning')">
+                    <img src="https://lh3.googleusercontent.com/d/1u2eDF_eb0PXTou_CIkeMODrC9R1ARCgw=w1200" alt="Wisatawan berfoto di Jeep kuning saat langit senja di Merapi" loading="lazy">
+                    <p class="polaroid-caption" data-i18n="galleryDriveSunset">Sunset bersama Jeep kuning</p>
+                    <a class="image-source" href="https://drive.google.com/file/d/1u2eDF_eb0PXTou_CIkeMODrC9R1ARCgw/view?usp=sharing" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Foto peserta / Google Drive</a>
+                </div>
+
+                <div class="polaroid-card rot-right-2" onclick="openModal('https://lh3.googleusercontent.com/d/1Ud6T4Q63bEsnnLg2pAxXERAGajEWdHzg=w1200', 'Jeep merah dan kuning dengan latar Merapi')">
+                    <img src="https://lh3.googleusercontent.com/d/1Ud6T4Q63bEsnnLg2pAxXERAGajEWdHzg=w1200" alt="Jeep merah dan kuning dengan latar Gunung Merapi" loading="lazy">
+                    <p class="polaroid-caption" data-i18n="galleryDriveJeepPair">Jeep merah dan kuning dengan latar Merapi</p>
+                    <a class="image-source" href="https://drive.google.com/file/d/1Ud6T4Q63bEsnnLg2pAxXERAGajEWdHzg/view?usp=sharing" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Foto peserta / Google Drive</a>
+                </div>
+
+                <div class="polaroid-card rot-left" onclick="openModal('https://lh3.googleusercontent.com/d/192LPQupSZHDNqz7Cs2Fb60Ye01qXIBai=w1200', 'Wisatawan berfoto di depan Merapi')">
+                    <img src="https://lh3.googleusercontent.com/d/192LPQupSZHDNqz7Cs2Fb60Ye01qXIBai=w1200" alt="Wisatawan berfoto di Jeep merah dengan latar Gunung Merapi" loading="lazy">
+                    <p class="polaroid-caption" data-i18n="galleryDriveRedJeep">Wisatawan berfoto di depan Merapi</p>
+                    <a class="image-source" href="https://drive.google.com/file/d/192LPQupSZHDNqz7Cs2Fb60Ye01qXIBai/view?usp=sharing" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Foto peserta / Google Drive</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kolom Artikel & Edukasi Wisata -->
+    <section id="artikel" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-i18n="articlesBadge">Blog & Panduan</span>
+                <h2 data-i18n="articlesTitle">Artikel Wisata Merapi</h2>
+                <p data-i18n="articlesDescription">Dapatkan informasi menarik, sejarah, serta tips sebelum mencoba wisata Jeep Merapi.</p>
+            </div>
+
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Merapi_Volcano_during_sunrise_2019.jpg" alt="Matahari pagi menyinari puncak Gunung Merapi">
+                        <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Merapi_Volcano_during_sunrise_2019.jpg" target="_blank" rel="noopener noreferrer">Desember01 / Wikimedia Commons (CC BY-SA 4.0)</a>
+                    </div>
+                    <div class="article-content">
+                        <span class="article-date"><i class="fa-regular fa-calendar"></i> <span data-i18n="articleDate1">18 Oktober 2026</span></span>
+                        <h3 data-i18n="article1Title">Tips Menikmati Golden Sunrise Gunung Merapi</h3>
+                        <p data-i18n="article1Excerpt">Persiapan penting bagi Anda yang mengambil Sunrise Trip: pakaian hangat, waktu keberangkatan, dan spot foto tercantik.</p>
+                        <details class="article-details">
+                            <summary class="article-readmore"><span data-i18n="readArticle">Baca artikel lengkap</span> <i class="fa-solid fa-arrow-right"></i></summary>
+                            <div class="article-full-text" data-locale-article="0">
+                                <p>Perjalanan sunrise memberi kesempatan untuk melihat suasana lereng Merapi saat pagi mulai terang. Cuaca, kabut, dan aktivitas gunung dapat memengaruhi pemandangan, jadi sunrise tidak selalu terlihat jelas. Nikmati perjalanan dan suasananya tanpa menganggap kemunculan matahari sebagai sesuatu yang bisa dijamin.</p>
+                                <h4>Persiapan sebelum berangkat</h4>
+                                <p>Konfirmasikan jam kumpul dan titik keberangkatan kepada pengelola sehari sebelumnya. Siapkan jaket atau pakaian berlapis karena udara pagi dapat terasa dingin, terutama saat Jeep bergerak. Gunakan alas kaki yang nyaman dan tidak licin, serta bawa air minum secukupnya.</p>
+                                <p>Isi daya ponsel dan kamera, lalu simpan perangkat di kantong atau tas yang mudah dijangkau. Bila membawa kamera, siapkan baterai cadangan dan kain kecil untuk membersihkan lensa. Jangan membawa barang terlalu banyak agar tetap leluasa saat naik-turun kendaraan.</p>
+                                <h4>Selama perjalanan</h4>
+                                <p>Duduklah dengan aman, gunakan pegangan yang tersedia, dan ikuti arahan pengemudi. Jangan berdiri di atas Jeep atau berpindah tempat ketika kendaraan berjalan. Pengemudi dapat menyesuaikan rute maupun waktu berhenti mengikuti cuaca, kondisi jalan, dan ketentuan kawasan.</p>
+                                <p>Jika cuaca berawan atau hujan, utamakan keselamatan daripada mengejar foto. Hormati area yang dibatasi dan jangan mendekati titik berbahaya. Untuk mengetahui rute dan pilihan paket, lihat halaman <a href="#paket">Paket Wisata</a> atau tanyakan kondisi terbaru kepada pengelola sebelum booking.</p>
+                            </div>
+                        </details>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Museum_Mini_Sisa_Hartaku_%282%29.jpg" alt="Museum Mini Sisa Hartaku">
+                        <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Museum_Mini_Sisa_Hartaku_(2).jpg" target="_blank" rel="noopener noreferrer">Aniisasan / Wikimedia Commons (CC BY-SA 4.0)</a>
+                    </div>
+                    <div class="article-content">
+                        <span class="article-date"><i class="fa-regular fa-calendar"></i> <span data-i18n="articleDate2">10 Oktober 2026</span></span>
+                        <h3 data-i18n="article2Title">Kisah Haru di Balik Mini Museum Sisa Hartaku</h3>
+                        <p data-i18n="article2Excerpt">Mengenal lebih dalam sejarah benda-benda peninggalan warga yang menjadi monumen ingatan dahsyatnya erupsi 2010.</p>
+                        <details class="article-details">
+                            <summary class="article-readmore"><span data-i18n="readArticle">Baca artikel lengkap</span> <i class="fa-solid fa-arrow-right"></i></summary>
+                            <div class="article-full-text" data-locale-article="1">
+                                <p>Mini Museum Sisa Hartaku di kawasan Petung, Kepuharjo, menyimpan benda-benda yang menjadi pengingat dampak erupsi Merapi tahun 2010 terhadap kehidupan warga. Koleksi seperti peralatan rumah tangga dan barang yang rusak akibat awan panas menunjukkan bahwa bencana bukan sekadar peristiwa alam, tetapi juga pengalaman yang mengubah kehidupan masyarakat.</p>
+                                <p>Nama museum ini mengajak pengunjung untuk berhenti sejenak dan memaknai benda-benda yang tersisa. Setiap koleksi memiliki konteks dan kisahnya sendiri. Saat berkunjung, luangkan waktu membaca keterangan yang tersedia dan dengarkan penuturan pemandu atau warga setempat bila ada.</p>
+                                <h4>Berkunjung dengan sikap menghormati</h4>
+                                <p>Tempat ini berkaitan dengan kehilangan dan pemulihan. Jagalah ketenangan, jangan menyentuh atau memindahkan koleksi tanpa izin, dan minta izin sebelum memotret orang atau ruang tertentu. Hindari menjadikan benda peninggalan sebagai properti untuk candaan atau foto yang tidak pantas.</p>
+                                <p>Pengelolaan, jam kunjungan, serta kondisi akses dapat berubah. Konfirmasikan informasi sebelum berangkat dan ikuti petunjuk pengelola di lokasi. Foto yang digunakan pada halaman ini merupakan dokumentasi koleksi yang sumber dan lisensinya ditautkan di bawah foto; informasi kunjungan sebaiknya dikonfirmasi langsung kepada pengelola setempat.</p>
+                                <h4>Bagian dari perjalanan Merapi</h4>
+                                <p>Kunjungan ke museum dapat menjadi bagian dari perjalanan yang juga mencakup beberapa titik wisata lain. Urutan dan durasi pemberhentian bergantung pada paket, keadaan jalan, serta arahan pengelola. Pilih rute sesuai waktu yang tersedia dan berikan waktu yang cukup untuk mengunjungi museum dengan tenang.</p>
+                            </div>
+                        </details>
+                    </div>
+                </article>
+
+                <article class="article-card">
+                    <div class="article-img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Lava_Tour_Jogja.jpg" alt="Jeep dalam perjalanan Lava Tour Merapi">
+                        <a class="image-source" href="https://commons.wikimedia.org/wiki/File:Lava_Tour_Jogja.jpg" target="_blank" rel="noopener noreferrer">Wrsrachma / Wikimedia Commons (CC BY-SA 4.0)</a>
+                    </div>
+                    <div class="article-content">
+                        <span class="article-date"><i class="fa-regular fa-calendar"></i> <span data-i18n="articleDate3">02 Oktober 2026</span></span>
+                        <h3 data-i18n="article3Title">Panduan Aman Saat Mengikuti Lava Tour Merapi</h3>
+                        <p data-i18n="article3Excerpt">Siapkan pakaian nyaman, lindungi barang bawaan, dan ikuti arahan pengemudi selama perjalanan di kawasan Merapi.</p>
+                        <details class="article-details">
+                            <summary class="article-readmore"><span data-i18n="readArticle">Baca artikel lengkap</span> <i class="fa-solid fa-arrow-right"></i></summary>
+                            <div class="article-full-text" data-locale-article="2">
+                                <p>Lava Tour Merapi membawa wisatawan melintasi kawasan yang memiliki medan dan kondisi berbeda dari perjalanan kota. Agar perjalanan lebih nyaman, persiapkan pakaian yang mudah bergerak dan alas kaki yang kuat. Debu, cipratan air, atau perubahan cuaca mungkin terjadi, bergantung pada rute dan kondisi hari itu.</p>
+                                <h4>Jaga diri dan barang bawaan</h4>
+                                <p>Simpan ponsel, kamera, dan dokumen di tas tertutup atau kantong tahan air. Jangan meletakkan barang lepas di tepi kendaraan. Pegang erat barang yang dibawa saat kendaraan bergerak, dan hindari menggunakan perangkat elektronik ketika melewati bagian jalan yang berguncang.</p>
+                                <p>Gunakan pegangan, duduk dengan stabil, dan jangan berdiri atau berpindah tempat saat Jeep berjalan. Anak-anak perlu didampingi orang dewasa. Jika memiliki kondisi kesehatan tertentu, sampaikan kepada pengelola sebelum berangkat agar dapat didiskusikan apakah perjalanan sesuai untuk Anda.</p>
+                                <h4>Ikuti arahan pengemudi dan pengelola</h4>
+                                <p>Pengemudi mengetahui kondisi medan dan dapat mengubah rute atau menghentikan perjalanan bila cuaca maupun akses tidak aman. Ikuti instruksi saat naik-turun kendaraan dan saat berada di titik pemberhentian. Jangan memasuki area yang ditutup, mendekati aliran air atau tebing tanpa izin, atau meminta pengemudi melanggar aturan keselamatan demi foto.</p>
+                                <p>Rute wisata bukan jaminan akses ke area tertentu. Aktivitas Gunung Merapi, cuaca, dan peraturan kawasan dapat berubah. Periksa pengumuman resmi serta konfirmasikan kondisi dan titik yang dapat dikunjungi langsung kepada pengelola sebelum melakukan pemesanan.</p>
+                                <h4>Sesudah perjalanan</h4>
+                                <p>Bersihkan diri dan periksa kembali barang bawaan setelah turun. Jika membawa sampah, bawa kembali sampai menemukan tempat pembuangan. Dengan persiapan yang baik dan sikap menghormati lingkungan, perjalanan dapat dinikmati dengan lebih nyaman tanpa mengabaikan keselamatan.</p>
+                            </div>
+                        </details>
+                    </div>
+                </article>
+            </div>
+            <div class="article-pagination">
+                <p class="article-count" id="articleCount" aria-live="polite"></p>
+                <button class="btn btn-primary article-load-more" id="articleLoadMore" type="button" hidden>
+                    Muat artikel lainnya
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Pembesaran Foto -->
+    <div class="modal" id="photoModal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" alt="Foto">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <!-- Form Pemesanan WhatsApp -->
+    <section id="pemesanan" class="section bg-dark text-white">
+        <div class="container">
+            <div class="booking-grid">
+                <div class="booking-info">
+                    <span class="section-badge badge-blue" data-i18n="bookingBadge">Pemesanan Cepat</span>
+                    <h2 data-i18n="bookingTitle">Pesan perjalanan Jeep FunTrip Merapi</h2>
+                    <p data-i18n="bookingDescription">Silakan isi data pemesanan di bawah ini. Data booking akan tercatat di sistem dan pesan WhatsApp akan disiapkan untuk admin.</p>
+                    <div class="contact-info-list">
+                        <p><i class="fa-brands fa-whatsapp"></i> <strong>WhatsApp:</strong> <a id="bookingWhatsappLink" class="booking-contact-link" href="https://wa.me/6287716315613" target="_blank" rel="noopener noreferrer">0877 1631 5613</a></p>
+                        <p><i class="fa-brands fa-instagram"></i> <strong>Instagram:</strong> <a id="bookingInstagramLink" class="booking-contact-link" href="https://www.instagram.com/jeepfuntripmerapi/" target="_blank" rel="noopener noreferrer">@jeepfuntripmerapi</a></p>
+                        <p><i class="fa-solid fa-location-dot"></i> <strong>Basecamp:</strong> <a id="bookingBasecampLink" class="booking-contact-link" href="https://www.google.com/maps/search/?api=1&amp;query=Pangkukrejo%2C%20Umbulharjo%2C%20Cangkringan%2C%20Sleman%2C%20DIY" target="_blank" rel="noopener noreferrer">Pangkukrejo, Umbulharjo, Cangkringan, Sleman, DIY</a></p>
+                    </div>
+                    <p id="bookingContactNotice" class="booking-notice booking-notice-error" role="status" hidden></p>
+                </div>
+
+                <div class="booking-card">
+                    <form id="bookingForm" onsubmit="handleBooking(event)">
+                        <div class="form-group">
+                            <label for="userName"><i class="fa-solid fa-user"></i> <span data-i18n="fullName">Nama Lengkap</span></label>
+                            <input type="text" id="userName" maxlength="120" data-i18n-placeholder="namePlaceholder" placeholder="Masukkan nama Anda" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="packageSelect"><i class="fa-solid fa-map"></i> <span data-i18n="selectPackage">Pilih Paket Wisata</span></label>
+                            <select id="packageSelect" onchange="handlePackageChange()" required>
+                                <option value="" disabled selected>-- Pilih Paket --</option>
+                                <option value="Short Trip (450K)" data-price="450000">Short Trip (Rp 450.000 / Jeep)</option>
+                                <option value="Short Plus Trip (500K)" data-price="500000">Short Plus Trip (Rp 500.000 / Jeep)</option>
+                                <option value="Medium Trip (550K)" data-price="550000">Medium Trip (Rp 550.000 / Jeep)</option>
+                                <option value="Long Trip (650K)" data-price="650000">Long Trip (Rp 650.000 / Jeep)</option>
+                                <option value="Sunrise Trip (600K)" data-price="600000">Sunrise Trip (Rp 600.000 / Jeep)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookingRouteSelect"><i class="fa-solid fa-route"></i> <span data-i18n="selectRoute">Pilih Rute</span></label>
+                            <select id="bookingRouteSelect" required disabled>
+                                <option value="">-- Pilih paket terlebih dahulu --</option>
+                            </select>
+                            <a id="bookingRouteLink" class="booking-route-link" href="rute.html" target="_blank" rel="noopener noreferrer" hidden><span data-i18n="routeDetails">Lihat detail rute & peta</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tripDate"><i class="fa-solid fa-calendar"></i> <span data-i18n="tripDate">Tanggal Trip</span></label>
+                                <input type="date" id="tripDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jeepCount"><i class="fa-solid fa-truck-monster"></i> <span data-i18n="jeepCount">Jumlah Jeep</span></label>
+                                <input type="number" id="jeepCount" min="1" max="50" value="1" onchange="calculateTotal()" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="participantCount"><i class="fa-solid fa-users"></i> <span data-i18n="participantCount">Jumlah Peserta (Orang)</span></label>
+                            <input type="number" id="participantCount" min="1" max="200" data-i18n-placeholder="participantPlaceholder" placeholder="Maks. 4 orang/Jeep" required>
+                        </div>
+
+                        <div class="price-summary">
+                            <span data-i18n="totalCost">Total Biaya:</span>
+                            <strong id="totalPriceDisplay">Rp 0</strong>
+                        </div>
+
+                        <button type="submit" class="btn btn-whatsapp btn-block">
+                            <i class="fa-brands fa-whatsapp"></i> <span data-i18n="whatsappSubmit">Chat Admin via WhatsApp</span>
+                        </button>
+                        <p id="bookingNotice" class="booking-notice" role="status" hidden></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Jeep FunTrip Merapi. Jelajah dengan rasa hormat.</p>
+            <p class="footer-sub">Pangkukrejo Umbulharjo Cangkringan Sleman DIY</p>
+            <p class="footer-sub">Statistik kunjungan dihitung secara agregat dan tidak menyimpan nama atau email.</p>
+        </div>
+    </footer>
+
+    <script src="app-config.js"></script>
+    <script src="featured-articles.js"></script>
+    <script src="local-data.js"></script>
+    <script src="script.js?v=20261117-1045"></script>
+</body>
+</html>
